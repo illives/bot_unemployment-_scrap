@@ -9,10 +9,19 @@ import os
 class Report:
 
     def __init__(self):
-        self.final_report = []
+        self.final_report = None
         self.url = None
         self._homedir = os.getcwd()[:-7]
         self.webdriver = None
+        self.html_content = None
+        self.soup = None
+        self.table = None
+
+    def create_final_report(self):
+        self.final_report = pd.read_html(str(self.table))[0]
+
+    def save_final_report(self):
+        self.final_report.to_excel(f'{self._homedir}\\report\\final_report.xlsx', index = False)
 
 
 class WebDriver(Report):
@@ -28,11 +37,18 @@ class WebDriver(Report):
     def open_urlsite(self):
         self.webdriver.get('https://pt.tradingeconomics.com/country-list/employment-rate')
 
-    def click_tabselectio(self):
-        pass
+    def set_tableelement(self):
+        element = self.webdriver.find_element('xpath','/html/body/form/div[6]/div/div[1]/div')
+        self.html_content = element.get_attribute('outerHTML')
+
 
 class Crawler(WebDriver):
-    pass
+    def instace_htmlparser(self):
+        self.soup = BeautifulSoup(self.html_content, 'html.parser')
+
+    def get_pagetable(self):
+        self.table = self.soup.find(name = 'table')
+
 
 class Process(Crawler):
     pass
