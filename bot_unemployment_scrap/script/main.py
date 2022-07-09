@@ -10,7 +10,6 @@ def main():
     bot.get_pagetable()
     bot.create_final_report()
     bot.save_final_report()
-    input()
    
 
 if __name__== '__main__':

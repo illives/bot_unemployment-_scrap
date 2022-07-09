@@ -27,7 +27,9 @@ class Report:
 class WebDriver(Report):
 
     def get_webdriver(self):
-        self.webdriver = webdriver.Chrome(f'{self._homedir}\\driver\\chromedriver.exe')
+        options = webdriver.ChromeOptions()
+        options.add_argument("--headless")
+        self.webdriver = webdriver.Chrome(f'{self._homedir}\\driver\\chromedriver.exe', chrome_options=options)
 
     def set_webdriver(self):
         self.webdriver.maximize_window()
@@ -40,6 +42,9 @@ class WebDriver(Report):
     def set_tableelement(self):
         element = self.webdriver.find_element('xpath','/html/body/form/div[6]/div/div[1]/div')
         self.html_content = element.get_attribute('outerHTML')
+    
+    def close_webtabs(self):
+        self.webdriver.quit()
 
 
 class Crawler(WebDriver):
