@@ -1,6 +1,6 @@
-from resources.resources import Process
+from crawler_unemployment_resources.resources import Process
 
-def main():
+def main_unemployment_crawler():
     bot = Process()
     bot.get_webdriver()
     bot.set_webdriver()
@@ -11,6 +11,3 @@ def main():
     bot.create_final_report()
     bot.save_final_report()
    
-
-if __name__== '__main__':
-    main()
