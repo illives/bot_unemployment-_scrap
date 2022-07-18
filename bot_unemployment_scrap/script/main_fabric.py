@@ -1,18 +1,8 @@
-from ast import main
-from threading import Thread
+from Threads_resources.threads_resources import MyThread
 
 from main_unemployment import main_unemployment_crawler
 from main_population import main_population_crawler
 
-
-class MyThread(Thread):
-
-    def __init__(self, scrypt):
-        self.scrypt = scrypt
-        Thread.__init__(self)
-
-    def run(self):
-        self.scrypt()
 
 
 if __name__=='__main__':
@@ -23,4 +13,7 @@ if __name__=='__main__':
     crawler_population = MyThread(main_population_crawler)
     crawler_population.start()
 
-   
+    while crawler_population.is_alive() and crawler_unemployment.is_alive():
+        pass
+
+    print('Execução do Crawler Terminada!')
