@@ -1,4 +1,3 @@
-
 from threading import Thread
 
 
@@ -10,3 +9,5 @@ class MyThread(Thread):
 
     def run(self):
         self.scrypt()
+
+
