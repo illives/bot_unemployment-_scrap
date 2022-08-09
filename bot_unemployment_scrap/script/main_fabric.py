@@ -1,3 +1,18 @@
+try:
+    import sys, os
+
+    sys.path.append(
+        os.path.abspath(
+            os.path.join(
+                os.path.dirname(__file__),
+                '..\\'
+            )
+        )
+    )
+except:
+    raise
+
+
 from Threads_resources.threads_resources import MyThread
 
 from main_unemployment import main_unemployment_crawler
