@@ -11,7 +11,6 @@ class test_WebDriver(unittest.TestCase):
         self.webdriver.implicitly_wait(30)
         self.webdriver.set_page_load_timeout(220)
         
-
     def test_if_chromedriver_file_is_in_directory(self):
         print(f'{os.getcwd()}\\driver\\chromedriver.exe')
         assert isfile (f'{os.getcwd()}\\driver\\chromedriver.exe')
