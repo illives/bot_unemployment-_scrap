@@ -1,5 +1,6 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
+from page.page_elements import *
 from time import sleep
 import pandas as pd
 import logging
@@ -66,7 +67,7 @@ class WebDriver(Report):
 
     def set_tableelement(self):
         try:
-            element = self.webdriver.find_element('xpath','/html/body/form/div[6]/div/div[1]/div')
+            element = self.webdriver.find_element(*PageLocators.TABLE_ELEMENT)
             self.html_content = element.get_attribute('outerHTML')
             logger.info('Unemployment_Crawler-Capturando Elemento da Tabela em HTML.')
         except Exception as erro:
